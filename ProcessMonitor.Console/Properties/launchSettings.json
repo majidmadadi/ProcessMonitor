@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ProcessMonitor.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "\"notepad.exe\"\r\n1\r\n1"
+    }
+  }
+}
