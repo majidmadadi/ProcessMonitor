@@ -3,8 +3,18 @@ using System.Text.RegularExpressions;
 
 namespace ProcessMonitor.Console
 {
+    /// <summary>
+    /// A utility class to get Windows processes creation time and terminate them.
+    /// </summary>
     public static class Win32ProcessManager
     {
+        /// <summary>
+        /// This function uses System.Management namespace to get the start time 
+        /// of the a process. It uses WQL to query the process by name and returns 
+        /// the handle and creation time.
+        /// </summary>
+        /// <param name="processName"></param>
+        /// <returns>List<ProcessModel></returns>
         public static List<ProcessModel> GetProcesses(string processName)
         {
             try
@@ -30,6 +40,11 @@ namespace ProcessMonitor.Console
             }
         }
 
+        /// <summary>
+        /// This function uses System.Management namespace to run 'Terminate' 
+        /// method of Win32_Process object. The log is written in .\log.txt
+        /// </summary>
+        /// <param name="processId"></param>
         public static void TerminateProcess(string processId)
         {
             try
@@ -60,6 +75,11 @@ namespace ProcessMonitor.Console
             }
         }
 
+        /// <summary>
+        /// DateTime.Parse() can not parse the time format so we have to write our own one.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns>DateTime</returns>
         public static DateTime ParseDateTime(string str)
         {
             var match = Regex.Match(str, @"(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})\..*");
